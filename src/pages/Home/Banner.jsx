@@ -12,22 +12,22 @@ const Banner = () => {
         infiniteLoop={true}
         stopOnHover={false}
       >
-        <div className="lg:h-[85vh]">
+        <div className="">
           <img src="https://i.postimg.cc/VLdHB0b6/01.jpg" className="h-full w-full object-cover"/>
         </div>
-        <div className="lg:h-[85vh]">
+        <div className="">
           <img src="https://i.postimg.cc/MGP9QWKR/02.jpg" className="h-full w-full object-cover" />
         </div>
-        <div className="lg:h-[85vh]">
+        <div className="">
           <img src="https://i.postimg.cc/wxtGDsNB/03.png" className="h-full w-full object-cover"/>
         </div>
-        <div className="lg:h-[85vh]">
+        <div className="">
           <img src="https://i.postimg.cc/rw9nq1Bf/04.jpg" className="h-full w-full object-cover"/>
         </div>
-        <div className="lg:h-[85vh]">
+        <div className="">
           <img src="https://i.postimg.cc/xjWF5TG3/05.png" className="h-full w-full object-cover"/>
         </div>
-        <div className="lg:h-[85vh]">
+        <div className="">
           <img src="https://i.postimg.cc/W3y02zpW/06.png" className="h-full w-full object-cover" />
         </div>
       </Carousel>
