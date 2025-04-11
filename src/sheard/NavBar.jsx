@@ -23,7 +23,7 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className="navbar  bg-nav-bg shadow-sm max-w-[120rem] mx-auto fixed z-50 w-full py-4 lg:px-10 md:px-5 ">
+    <div className="navbar  bg-[#00000079] shadow-sm max-w-[120rem] mx-auto fixed z-50 w-full py-4 lg:px-10 md:px-5 ">
       <div className="navbar-start">
         <Link className="lg:text-xl md:text-md text-sm uppercase text-light text-left"><div><p>Bistro Boss</p> <span className="tracking-[.3rem]">Restaurant</span></div></Link>
       </div>
@@ -42,9 +42,9 @@ const NavBar = () => {
               {/* Page content here */}
               <label
                 htmlFor="my-drawer-4"
-                className="drawer-button btn border-0 btn-primary"
+                className=" border-0 btn-primary"
               >
-                <IoMenu className="text-3xl hover:border-0" />
+                <IoMenu className="text-3xl hover:border-0 text-light" />
               </label>
             </div>
             <div className="drawer-side">
@@ -53,7 +53,7 @@ const NavBar = () => {
                 aria-label="close sidebar"
                 className="drawer-overlay"
               ></label>
-              <ul className="menu  min-h-full bg-amber-100 text-black p-4">
+              <ul className="menu  min-h-full bg-phone-nav-bg text-black p-4">
                 {/* Sidebar content here */}
                 {navLinks}
               </ul>
