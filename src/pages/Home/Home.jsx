@@ -1,27 +1,30 @@
-import React from 'react';
-import SectionTitle from '../../components/SectionTitle';
-import useMenu from '../../hooks/useMenu';
-import MenuItem from '../../sheard/MenuItem';
+import React from "react";
+import useMenu from "../../hooks/useMenu";
+import OurMenu from "./OurMenu";
+import Category from "./Category";
+import Banner from "./Banner";
+import BistroBossSection from "./BistroBossSection";
+import CallUs from "./CallUs";
+import RecommendedItems from "./RecommendedItems";
 const Home = () => {
+  const [menu] = useMenu("offered");
 
-    const [menu] = useMenu('popular');
+  console.log(menu);
+  // const popularItems = menu?.filter(item => item.category === 'popular')
 
-    console.log(menu)
-    // const popularItems = menu?.filter(item => item.category === 'popular')
+  return (
+    <div>
+      <Banner></Banner>
+      <div className="max-w-[82.5rem] mx-auto pt-24 px-5 ">
+        <Category />
 
-    return (
-        <div>
-            <SectionTitle subTitle="From 11:00am to 10:00pm" mainTitle="ORDER ONLINE"></SectionTitle>
-            <div className="grid grid-cols-1 gap-5 pt-10 lg:grid-cols-2 lg:px-28">
-                {
-                    menu?.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
-                }
-            </div>
-            <div className="flex justify-center py-6">
-            {/* <Button buttonText='View Full Menu'></Button> */}
-            </div>
-        </div>
-    );
+        <BistroBossSection />
+        <OurMenu></OurMenu>
+        <CallUs/>
+        <RecommendedItems></RecommendedItems>
+      </div>
+    </div>
+  );
 };
 
 export default Home;

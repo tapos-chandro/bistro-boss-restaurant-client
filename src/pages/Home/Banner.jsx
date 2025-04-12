@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div >
       <Carousel
-        className="text-center z-20  "
+        className="text-center z-20"
         thumbWidth={120}
         autoPlay={true}
         infiniteLoop={true}
