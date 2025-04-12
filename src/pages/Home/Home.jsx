@@ -6,6 +6,8 @@ import Banner from "./Banner";
 import BistroBossSection from "./BistroBossSection";
 import CallUs from "./CallUs";
 import RecommendedItems from "./RecommendedItems";
+import FeatureMenu from "./FeatureMenu";
+import ReactHelmet from "../../sheard/ReactHelmet";
 const Home = () => {
   const [menu] = useMenu("offered");
 
@@ -14,6 +16,7 @@ const Home = () => {
 
   return (
     <div>
+      <ReactHelmet title="Home"></ReactHelmet>
       <Banner></Banner>
       <div className="max-w-[82.5rem] mx-auto pt-24 px-5 ">
         <Category />
@@ -22,6 +25,7 @@ const Home = () => {
         <OurMenu></OurMenu>
         <CallUs/>
         <RecommendedItems></RecommendedItems>
+        <FeatureMenu/>
       </div>
     </div>
   );
