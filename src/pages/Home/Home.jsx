@@ -8,6 +8,7 @@ import CallUs from "./CallUs";
 import RecommendedItems from "./RecommendedItems";
 import FeatureMenu from "./FeatureMenu";
 import ReactHelmet from "../../sheard/ReactHelmet";
+import Testimonials from "./Testimonials";
 const Home = () => {
   const [menu] = useMenu("offered");
 
@@ -26,6 +27,7 @@ const Home = () => {
         <CallUs/>
         <RecommendedItems></RecommendedItems>
         <FeatureMenu/>
+        <Testimonials></Testimonials>
       </div>
     </div>
   );
