@@ -5,7 +5,7 @@ const ContactUs = () => {
     return (
         <div>
             <ReactHelmet title="Contact Us"></ReactHelmet>
-            <h1>This is contacts</h1>
+            <h1>This is contacts lorem1000</h1>
         </div>
     );
 };

@@ -3,9 +3,17 @@ import useMenu from '../../hooks/useMenu';
 import SectionTitle from '../../components/SectionTitle';
 import MenuItem from '../../sheard/MenuItem';
 import Button from '../../components/Button';
+import { RotatingLines } from 'react-loader-spinner';
+import Loading from '../../components/Loading';
 
 const OurMenu = () => {
     const [menu] = useMenu('popular');
+
+
+    if (!menu) { 
+       return <Loading/>
+    }
+
     return (
         <div>
         <SectionTitle subTitle="Check it out" mainTitle="FROM OUR MENU"></SectionTitle>

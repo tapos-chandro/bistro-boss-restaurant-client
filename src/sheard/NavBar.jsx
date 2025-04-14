@@ -18,7 +18,7 @@ const NavBar = () => {
         <NavLink to="/our-menu" className="font-extrabold text-xl uppercase text-light">Our Menu</NavLink>
       </li>
       <li>
-        <NavLink to="/our-shop" className="font-extrabold text-xl uppercase text-light">Our Shop</NavLink>
+        <NavLink to="/our-shop/offered" className="font-extrabold text-xl uppercase text-light">Our Shop</NavLink>
       </li>
     </>
   );
