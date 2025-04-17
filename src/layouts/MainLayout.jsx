@@ -1,17 +1,20 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "../sheard/NavBar";
 import Footer from "../sheard/Footer";
-import Banner from "../pages/Home/Banner";
 
 const MainLayout = () => {
+  const {pathname} = useLocation();
+  console.log(pathname)
+  const hightNavFooter = pathname === "/login" || pathname === "/register";
+
   return (
     <div>
       <div className="max-w-[120rem] mx-auto">
-        <NavBar></NavBar>
+        {hightNavFooter || <NavBar></NavBar>}
         <div>
           <Outlet />
         </div>
-        <Footer />
+        {hightNavFooter || <Footer />}
       </div>
     </div>
   );
