@@ -1,8 +1,12 @@
 import { FcGoogle } from "react-icons/fc";
 import authention from "../../assets/others/authentication2.png"
 import { Link } from "react-router";
-
+import useAuth from "../../hooks/useAuth";
 const Login = () => {
+
+    const { user, createUser } = useAuth()
+    console.log(user)
+
 
     return (
         <div>
@@ -17,12 +21,14 @@ const Login = () => {
                         <h1 className="text-center text-2xl font-bold">Login Page</h1>
                         <div className="card-body text-center">
                             <fieldset className="fieldset">
-                                <label className="fieldset-label">Email</label>
-                                <input type="email" className="input" placeholder="Email" />
-                                <label className="fieldset-label">Password</label>
-                                <input type="password" className="input" placeholder="Password" />
-                                <div><a className="link link-hover">Forgot password?</a></div>
-                                <button className="btn mt-4 bg-[#d9b682] text-light rounded-md">Login</button>
+                                <form>
+                                    <label className="fieldset-label">Email</label>
+                                    <input type="email" className="input" placeholder="Email" />
+                                    <label className="fieldset-label">Password</label>
+                                    <input type="password" className="input" placeholder="Password" />
+                                    <div><a className="link link-hover">Forgot password?</a></div>
+                                    <button className="btn mt-4 bg-[#d9b682] text-light rounded-md">Login</button>
+                                </form>
                             </fieldset>
                             <p className=" text-md font-bold text-[#d19f54]">New here? <Link className="font-extrabold" to={'/register'}>Create a New Account</Link></p>
                             <h3 className="text-lg font-medium">Or sign in with</h3>
