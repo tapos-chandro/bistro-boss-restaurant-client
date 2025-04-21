@@ -1,8 +1,17 @@
 import React from "react";
 import { IoMenu } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const NavBar = () => {
+
+  const {logOutUser, user} = useAuth();
+
+  const handleLogOut = () => {
+    logOutUser()
+  }
+
+
   const navLinks = (
     <>
       <li>
@@ -12,7 +21,7 @@ const NavBar = () => {
         <NavLink to="/contact" className="font-extrabold text-xl uppercase text-light">CONTACT us</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard" className="font-extrabold text-xl uppercase text-light">DASHBOARD</NavLink>
+        <NavLink to="/dashboard/user" className="font-extrabold text-xl uppercase text-light">DASHBOARD</NavLink>
       </li>
       <li>
         <NavLink to="/our-menu" className="font-extrabold text-xl uppercase text-light">Our Menu</NavLink>
@@ -29,12 +38,13 @@ const NavBar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          {/* Navbar menu content here  */}
           {navLinks}    
         </ul>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-primary lg:block hidden">Get started</button>
+        {
+          user?.email ? <button className="btn btn-primary lg:block hidden" onClick={handleLogOut}>Log Out</button>: <Link to={"/login"}>Login</Link>
+        }
         <div className="dropdown lg:hidden">
           <div className="drawer drawer-end">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />

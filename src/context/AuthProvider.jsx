@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config';
 
@@ -8,14 +8,26 @@ const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
-
+    const [error, setError] = useState(null)
     const googleProvider = new GoogleAuthProvider();
+    console.log(user, 'user in auth provider')
 
 
+    const createUser = async (name, email, password) => {
 
-    const createUser = (email, password) => {
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password)
+        setLoading(true);
+        try {
+            const result = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(result.user, { displayName: name });
+            return result;
+        } catch (error) {
+            console.error("Error creating user:", error);
+            setError(error.message);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
+        
     }
 
     const signInUser = (email, password) => {
@@ -24,7 +36,8 @@ const AuthProvider = ({ children }) => {
     }
 
     const signInWithGoogle = () => {
-        signInWithPopup(auth, googleProvider)
+        setLoading(true)
+        return signInWithPopup(auth, googleProvider)
     }
 
 
@@ -37,10 +50,14 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            if(currentUser){
+            console.log(currentUser, 'current user in auth provider')
+            
+
+            if (currentUser) {
                 setLoading(true)
-                setUser(currentUser.uid)
-            }else{
+                setUser(currentUser)
+                console.log(currentUser, 'current user in auth provider')
+            } else {
                 logOutUser()
                 setLoading(false)
 
@@ -49,7 +66,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             unSubscribe()
         }
-    },[])
+    }, [])
 
 
 
@@ -60,7 +77,10 @@ const AuthProvider = ({ children }) => {
         createUser,
         signInUser,
         logOutUser,
-        signInWithGoogle
+        signInWithGoogle,
+        setLoading,
+        error,
+
     }
 
 
