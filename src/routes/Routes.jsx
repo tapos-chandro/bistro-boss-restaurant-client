@@ -13,6 +13,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import AddPlan from "../pages/Dashboard/AddPlan";
 import UserHome from "../pages/Dashboard/UserHome";
 import Payment from "../pages/Dashboard/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory";
+import MyCard from "../pages/Dashboard/MyCard";
 
 
 export const router = createBrowserRouter([
@@ -59,10 +61,21 @@ export const router = createBrowserRouter([
             {
                 path: "payment",
                 element: <Payment></Payment>
-            },
+            }
+            ,
             {
                 path: "user-home",
                 element: <UserHome></UserHome>
+            }
+            ,
+            {
+                path: "payment-history",
+                element: <PaymentHistory></PaymentHistory>
+            }
+            ,
+            {
+                path: "my-card",
+                element: <MyCard></MyCard>
             }
         ]
        
