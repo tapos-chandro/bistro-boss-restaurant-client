@@ -2,6 +2,7 @@ import React from 'react';
 
 import useAuth from '../hooks/useAuth';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const Card = ({item}) => {
     const {user} = useAuth();
@@ -14,6 +15,15 @@ const Card = ({item}) => {
         const cartItem = {menuItemId: id, name, image, price, email: user?.email}
         const response = await axiosSecure.post('/carts', cartItem)
         console.log(response.data)
+        if(response.data.acknowledged === true){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Added to cart",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
 
     };
 

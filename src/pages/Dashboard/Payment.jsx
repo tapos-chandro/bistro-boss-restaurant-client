@@ -1,4 +1,9 @@
 import React from 'react';
+import CheckoutFrom from './CheckoutFrom';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+
+const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_PK_KYE);
 
 const Payment = () => {
     return (
@@ -6,13 +11,11 @@ const Payment = () => {
         <div className="flex justify-center items-center h-screen w-full ">
             <div className="w-full  text-center">
                 <h2 className="text-2xl font-semibold mb-8">PAYMENT</h2>
-                <form className=" gap-4">
-                    <div className='max-w-2xl flex justify-between my-5 mx-auto'>
-                    <input type="text" placeholder="Card number" className="input input-bordered w-full " />
-                    <input type="text" placeholder="MM/YY/CVC" className="input input-bordered w-full" />
+                <Elements stripe={stripePromise}>
+                    <div className='max-w-3xl mx-auto px-14'>
+                    <CheckoutFrom></CheckoutFrom>
                     </div>
-                    <button className="btn bg-purple-700 rounded-lg p-6 hover:bg-purple-800 text-white w-full max-w-sm">Pay</button>
-                </form>
+                </Elements>
             </div>
         </div>
     );
