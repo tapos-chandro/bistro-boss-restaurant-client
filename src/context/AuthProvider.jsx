@@ -60,6 +60,7 @@ const AuthProvider = ({ children }) => {
             } else {
                 logOutUser()
                 setLoading(false)
+                setUser(null)
 
             }
         })

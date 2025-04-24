@@ -3,6 +3,10 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import useCarts from './../../hooks/useCarts';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router';
+
+
 
 const CheckoutFrom = () => {
   const stripe = useStripe();
@@ -13,7 +17,7 @@ const CheckoutFrom = () => {
   const [transitionId , setTransitionId] = useState('');
   const total = cartsItems.reduce((sum, item) => sum + item.price, 0);
   const {user} = useAuth();
-
+  const navigate = useNavigate();
 
 
   console.log(clientSecret)
@@ -103,6 +107,18 @@ const CheckoutFrom = () => {
 
        console.log('payment response', response.data)
        refetch()
+       console.log('payment response', response.data.result.insertedId)
+
+       if(response.data.result.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Payment Successful",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/dashboard/payment-history')
+       }
 
         
       }

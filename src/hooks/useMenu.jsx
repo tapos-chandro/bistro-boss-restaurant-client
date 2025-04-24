@@ -8,9 +8,6 @@ const useMenu = (category, pageNumber=0, limit = 0) => {
 
     const axiosPublic = useAxiosPublic()
    
-
-    console.log(pageNumber,'page numbers ')
-
     const { isPending,  data:menu , refetch} = useQuery({
         queryKey: ['menu', category, pageNumber, limit],
         queryFn: () =>

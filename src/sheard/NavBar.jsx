@@ -2,13 +2,15 @@ import React from "react";
 import { IoMenu } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import Loading from './../components/Loading';
 
 const NavBar = () => {
 
-  const {logOutUser, user} = useAuth();
+  const {logOutUser, user, loading} = useAuth();
 
   const handleLogOut = () => {
     logOutUser()
+    .then(res => console.log(res))
   }
 
 
@@ -31,6 +33,8 @@ const NavBar = () => {
       </li>
     </>
   );
+
+
   return (
     <div className="navbar  bg-[#00000079] shadow-sm max-w-[120rem] mx-auto fixed z-50 w-full py-4 lg:px-10 md:px-5 ">
       <div className="navbar-start">
@@ -43,7 +47,7 @@ const NavBar = () => {
       </div>
       <div className="navbar-end">
         {
-          user?.email ? <button className="btn btn-primary lg:block hidden" onClick={handleLogOut}>Log Out</button>: <Link to={"/login"}>Login</Link>
+          user ? <button className="btn btn-primary lg:block hidden text-light" onClick={handleLogOut}>Log Out</button>: <Link to={"/login"}><button className="btn text-light">Login</button></Link>
         }
         <div className="dropdown lg:hidden">
           <div className="drawer drawer-end">
