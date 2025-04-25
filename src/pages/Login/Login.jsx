@@ -5,18 +5,19 @@ import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 const Login = () => {
 
-    const { user, signInUser, signInWithGoogle, setLoading } = useAuth()
-    console.log(user)
+    const { signInUser, signInWithGoogle, setLoading } = useAuth()
+
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
     const navigate = useNavigate();
 
     const { register, handleSubmit } = useForm()
     const onSubmit = async (data) =>{
-        console.log(data)
        const res = await signInUser(data?.email, data?.password)
 
-       console.log(res)
+       if(res?.user){
+        navigate(from,  {replace: true})
+       }
     }
 
     const handleGoogleLogin = async () => {

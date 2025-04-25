@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 export const AuthContext = createContext(null)
 
@@ -10,7 +11,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
     const googleProvider = new GoogleAuthProvider();
-    console.log(user, 'user in auth provider')
+    const axiosSecure = useAxiosSecure()
 
 
     const createUser = async (name, email, password) => {
@@ -27,7 +28,7 @@ const AuthProvider = ({ children }) => {
         } finally {
             setLoading(false);
         }
-        
+
     }
 
     const signInUser = (email, password) => {
@@ -49,14 +50,25 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser, 'current user in auth provider')
-            
+        const unSubscribe = onAuthStateChanged(auth, async currentUser => {
+            console.log(user, 'current user in auth provider')
+            const name = user?.displayName;
+            const email = user?.email;
+
+            if (name) {
+                await axiosSecure.post('/users', {
+                    name,
+                    email
+                })
+            }
 
             if (currentUser) {
                 setLoading(true)
                 setUser(currentUser)
                 console.log(currentUser, 'current user in auth provider')
+
+
+
             } else {
                 logOutUser()
                 setLoading(false)
@@ -67,7 +79,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             unSubscribe()
         }
-    }, [])
+    }, [user?.displayName])
 
 
 

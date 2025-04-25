@@ -2,11 +2,13 @@ import React from "react";
 import { IoMenu } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import Loading from './../components/Loading';
+import useUser from "../hooks/useUser";
+
 
 const NavBar = () => {
 
-  const {logOutUser, user, loading} = useAuth();
+  const {logOutUser, user,} = useAuth();
+  const [usersRole] = useUser(); 
 
   const handleLogOut = () => {
     logOutUser()
@@ -23,7 +25,7 @@ const NavBar = () => {
         <NavLink to="/contact" className="font-extrabold text-xl uppercase text-light">CONTACT us</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/user" className="font-extrabold text-xl uppercase text-light">DASHBOARD</NavLink>
+        <NavLink to={`${usersRole === "customer" ? "/dashboard/user": "/dashboard/admin"}`} className="font-extrabold text-xl uppercase text-light">DASHBOARD</NavLink>
       </li>
       <li>
         <NavLink to="/our-menu" className="font-extrabold text-xl uppercase text-light">Our Menu</NavLink>

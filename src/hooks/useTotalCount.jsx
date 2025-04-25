@@ -6,8 +6,7 @@ import useAxiosPublic from "./useAxiosPublic";
 
 const useTotalCount = (category) => {
 
-    const axiosPublic = useAxiosPublic()
-   console.log(category)
+    const axiosPublic = useAxiosPublic();
 
 
     const { isLoading,  data:count} = useQuery({

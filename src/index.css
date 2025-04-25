@@ -1,9 +1,9 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: light 
-}
+@plugin "daisyui" ;
+
 
 @theme {
+  
   --font-display: "Satoshi", "sans-serif";
   --breakpoint-3xl: 120rem;
   --color-footer-100: #1F2937;
